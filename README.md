@@ -21,7 +21,7 @@ This library helps developer to read data from credit card: card number, expired
 ##### Add the dependencies to your gradle file:
 ```sh
     dependencies {
-        	        implementation 'com.github.LouisP79:creditCardNfcReader:Tag'
+        	        implementation 'com.github.LouisP79:creditCardNfcReader:v1.2'
     }
 ```
 
