@@ -43,19 +43,19 @@ public class MainActivity extends AppCompatActivity implements CardNfcAsyncTask.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mToolbar = (Toolbar)findViewById(R.id.toolbar);
+        mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (mNfcAdapter == null){
-            TextView noNfc = (TextView)findViewById(android.R.id.candidatesArea);
+            TextView noNfc = findViewById(android.R.id.candidatesArea);
             noNfc.setVisibility(View.VISIBLE);
         } else {
             mCardNfcUtils = new CardNfcUtils(this);
-            mPutCardContent = (TextView) findViewById(R.id.content_putCard);
-            mCardReadyContent = (LinearLayout) findViewById(R.id.content_cardReady);
-            mCardNumberText = (TextView) findViewById(android.R.id.text1);
-            mExpireDateText = (TextView) findViewById(android.R.id.text2);
-            mCardLogoIcon = (ImageView) findViewById(android.R.id.icon);
+            mPutCardContent =  findViewById(R.id.content_putCard);
+            mCardReadyContent =  findViewById(R.id.content_cardReady);
+            mCardNumberText =  findViewById(android.R.id.text1);
+            mExpireDateText =  findViewById(android.R.id.text2);
+            mCardLogoIcon =  findViewById(android.R.id.icon);
             createProgressDialog();
             initNfcMessages();
             mIntentFromCreate = true;
@@ -164,11 +164,7 @@ public class MainActivity extends AppCompatActivity implements CardNfcAsyncTask.
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             // Send the user to the settings page and hope they turn it on
-                            if (android.os.Build.VERSION.SDK_INT >= 16) {
-                                startActivity(new Intent(android.provider.Settings.ACTION_NFC_SETTINGS));
-                            } else {
-                                startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
-                            }
+                            startActivity(new Intent(android.provider.Settings.ACTION_NFC_SETTINGS));
                         }
                     })
                     .setNegativeButton(neg, new DialogInterface.OnClickListener() {
