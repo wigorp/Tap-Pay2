@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.pro100svitlo.nfccardreader">
+    package="com.TapPay.nfccardreader">
 
     <uses-permission android:name="android.permission.NFC" />
     <application
