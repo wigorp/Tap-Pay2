@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.TapPay.creditCardNfcReader.CardNfcAsyncTask;
 import com.TapPay.creditCardNfcReader.utils.CardNfcUtils;
 import com.TapPay.nfccardread.R;
