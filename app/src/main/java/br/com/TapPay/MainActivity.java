@@ -7,10 +7,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -44,8 +44,7 @@ public class MainActivity extends AppCompatActivity implements CardNfcAsyncTask.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mToolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
+
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (mNfcAdapter == null){
             TextView noNfc = findViewById(android.R.id.candidatesArea);
@@ -191,10 +190,11 @@ public class MainActivity extends AppCompatActivity implements CardNfcAsyncTask.
                     .setAction("GO", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            goToRepo();
-                        }
+                            goToRepo();                        }
                     });
         } else if (cardType.equals(CardNfcAsyncTask.CARD_VISA)){
+            mCardLogoIcon.setImageResource(R.mipmap.visa_logo);
+        } else if (cardType.equals(CardNfcAsyncTask.CARD_NAB_VISA)){
             mCardLogoIcon.setImageResource(R.mipmap.visa_logo);
         } else if (cardType.equals(CardNfcAsyncTask.CARD_MASTER_CARD)){
             mCardLogoIcon.setImageResource(R.mipmap.master_logo);

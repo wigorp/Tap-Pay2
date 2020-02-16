@@ -5,12 +5,12 @@
         android:radius="20dp"
         />
     <stroke
-        android:width="2dp"
-        android:color="@color/colorPrimaryDark"
+        android:width="4dp"
+        android:color="@color/colorCard"
         />
     <gradient
-        android:startColor="@color/colorPrimary"
-        android:endColor="@color/colorPrimaryDark"
+        android:startColor="@color/startColor"
+        android:endColor="@color/endColor"
         android:type="linear"
         android:angle="90"
         />
