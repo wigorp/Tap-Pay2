@@ -5,146 +5,99 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
-
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.TapPay.nfccardread.R;
+
 
 public class Cobrar extends AppCompatActivity {
 
-
-
-    Button btnUm, btnDois, btnTres, btnQuatro, btnCinco, btnSeis, btnSete, btnOito,
-            btnNove, btnZero,btnConfimar, btnCancelar;
-
-    EditText etCobranca, etConcatenar;
-
-    double numero1;
-    String operador;
-
+    long Cobrar = 0;
+    boolean ultimoClickIgual= false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cobrar);
+    }
 
-        btnUm = (Button)findViewById(R.id.btnUm);
-        btnDois = (Button)findViewById(R.id.btnDois);
-        btnTres = (Button)findViewById(R.id.btnTres);
-        btnQuatro = (Button)findViewById(R.id.btnQuatro);
-        btnCinco = (Button)findViewById(R.id.btnCinco);
-        btnSeis = (Button)findViewById(R.id.btnSeis);
-        btnSete = (Button)findViewById(R.id.btnSete);
-        btnOito = (Button)findViewById(R.id.btnOito);
-        btnNove = (Button)findViewById(R.id.btnNove);
-        btnZero = (Button)findViewById(R.id.btnZero);
-        btnCancelar = (Button)findViewById(R.id.btnCancelar);
-        btnConfimar = (Button)findViewById(R.id.btnConfirmar);
-
-
-        btnUm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                etConcatenar = (EditText)findViewById(R.id.etCobranca);
-                etCobranca.setText(etConcatenar.getText().toString() + "1");
-            }
-        });
-
-        btnDois.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                etConcatenar = (EditText)findViewById(R.id.etCobranca);
-                etCobranca.setText(etConcatenar.getText().toString() + "2");
-            }
-        });
-
-        btnTres.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                etConcatenar = (EditText)findViewById(R.id.etCobranca);
-                etCobranca.setText(etConcatenar.getText().toString() + "3");
-            }
-        });
-
-        btnQuatro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                etConcatenar = (EditText)findViewById(R.id.etCobranca);
-                etCobranca.setText(etConcatenar.getText().toString() + "4");
-            }
-        });
-
-        btnCinco.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                etConcatenar = (EditText)findViewById(R.id.etCobranca);
-                etCobranca.setText(etConcatenar.getText().toString() + "5");
-            }
-        });
-
-        btnSeis.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                etConcatenar = (EditText)findViewById(R.id.etCobranca);
-                etCobranca.setText(etConcatenar.getText().toString() + "6");
-            }
-        });
-
-        btnSete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                etConcatenar = (EditText)findViewById(R.id.etCobranca);
-                etCobranca.setText(etConcatenar.getText().toString() + "7");
-            }
-        });
-
-        btnOito.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                etConcatenar = (EditText)findViewById(R.id.etCobranca);
-                etCobranca.setText(etConcatenar.getText().toString() + "8");
-            }
-        });
-
-        btnNove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                etConcatenar = (EditText)findViewById(R.id.etCobranca);
-                etCobranca.setText(etConcatenar.getText().toString() + "9");
-            }
-        });
-
-        btnZero.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                etConcatenar = (EditText)findViewById(R.id.etCobranca);
-                etCobranca.setText(etConcatenar.getText().toString() + "0");
-            }
-        });
-
-        btnConfimar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent);
-
-            }
-        });
-
-        btnCancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),Cobrar.class);
-                startActivity(intent);
-
-            }
-        });
-
-
+    public void clickbtnCancelar (View view){
+        TextView display = findViewById(R.id.etCobranca);
+        display.setText("");
 
 
     }
+
+    public void ExibirNaTela (int digito){
+        TextView display = findViewById(R.id.etCobranca);
+        String TelaAnterior = display.getText().toString();
+        if((TelaAnterior=="0")||(TelaAnterior=="")||ultimoClickIgual)
+        {
+            if (digito!=0)
+                display.setText(""+digito);
+            else display.setText("0");
+        }
+        else
+        {
+            String digitosDisplay = TelaAnterior + digito;
+            display.setText(digitosDisplay);}
+        ultimoClickIgual=false;
+    }
+
+    public void actualizaResultado (int digito)
+    {
+        Cobrar = (Cobrar*10) + digito;
+    }
+
+
+    public void clickbtnUm (View view){
+        ExibirNaTela(1);
+        actualizaResultado (1);
+    }
+    public void clickbtnDois (View view){
+        ExibirNaTela(2);
+        actualizaResultado (2);
+    }
+    public void clickbtnTres (View view){
+        ExibirNaTela(3);
+        actualizaResultado (3);
+    }
+    public void clickbtnQuatro (View view){
+        ExibirNaTela(4);
+        actualizaResultado (4);
+    }
+    public void clickbtnCinco (View view){
+        ExibirNaTela(5);
+        actualizaResultado (5);
+    }
+    public void clickbtnSeis (View view){
+        ExibirNaTela(6);
+        actualizaResultado (6);
+    }
+    public void clickbtnSete (View view){
+        ExibirNaTela(7);
+        actualizaResultado (7);
+    }
+    public void clickbtnOito (View view){
+        ExibirNaTela(8);
+        actualizaResultado (8);
+    }
+    public void clickbtnNove (View view){
+        ExibirNaTela(9);
+        actualizaResultado (9);
+    }
+    public void clickbtnZero (View view){
+        ExibirNaTela(0);
+        actualizaResultado (0);
+    }
+
+    public void clickbtnConfirmar (View view) {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+    }
+
+
 }
+
 
 
